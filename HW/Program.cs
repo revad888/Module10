@@ -4,29 +4,32 @@
     {
         static void Main(string[] args)
         {
-            Calculator calc = new Calculator();
-            var a = Console.ReadLine();
-            var b = Console.ReadLine();
-            var c = calc.Addition(a, b);
-            Console.WriteLine(c);
-            Console.ReadLine();
+            var logger = new Logger();
+            Calculator calc = new Calculator(logger);
 
-        }
-
-         public interface IAddition
-        {
-             double Addition(string valu1, string value2);
-        }
-
-        public class Calculator : IAddition
-        {
-            public double Addition(string value1, string value2)
+            while (true)
             {
-                var d1 = Double.Parse(value1);
-                var d2 = Double.Parse(value2);
-                return d1 + d2;
-            }
-        }
+                //Подготовка консоли и ввод знаяений
+                Console.Clear();
 
+                Console.Write("Введите первое значение: ");
+                var a = Console.ReadLine();
+
+                Console.Write("Введите второе значение: ");
+                var b = Console.ReadLine();
+
+                //Вычисления
+                calc.Addition(a, b);
+
+                //Перезапуск вычисления
+                Console.WriteLine();
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("Нажмите любую клавишу для нового расчета");
+                Console.ReadKey();
+
+            }
+
+
+        }
     }
 }
